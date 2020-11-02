@@ -8,16 +8,16 @@ class MainKtTest {
     fun commissionVkPay() {
         val card = "VkPay"
         val transfers = 1_000
-        val MonthTransfers = 0
-        val MastercardMaestroCommission = 0.06
-        val VisaMirCommission = 0.075
+        val monthTransfers = 0
+        val mastercardMaestroCommission = 0.06
+        val visaMirCommission = 0.075
 
-        val result = Commission(
+        val result = commission(
             card = card,
             transfers = transfers,
-            MonthTransfers = MonthTransfers,
-            MastercardMaestroCommission = MastercardMaestroCommission,
-            VisaMirCommission = VisaMirCommission
+            monthTransfers = monthTransfers,
+            mastercardMaestroCommission = mastercardMaestroCommission,
+            visaMirCommission = visaMirCommission
         )
         assertEquals(result, 0)
     }
@@ -26,16 +26,16 @@ class MainKtTest {
     fun commissionMastercardMaestro() {
         val card2 = "Mastercard"
         val transfers = 5_000
-        val MonthTransfers = 80_000
-        val MastercardMaestroCommission = 0.06
-        val VisaMirCommission = 0.075
+        val monthTransfers = 80_000
+        val mastercardMaestroCommission = 0.06
+        val visaMirCommission = 0.075
 
-        val result = Commission(
+        val result = commission(
             card = card2,
             transfers = transfers,
-            MonthTransfers = MonthTransfers,
-            MastercardMaestroCommission = MastercardMaestroCommission,
-            VisaMirCommission = VisaMirCommission
+            monthTransfers = monthTransfers,
+            mastercardMaestroCommission = mastercardMaestroCommission,
+            visaMirCommission = visaMirCommission
         )
         assertEquals(result, 32_000)
     }
@@ -44,17 +44,35 @@ class MainKtTest {
     fun commissionVisaMir() {
         val card4 = "Mir"
         val transfers = 5_000
-        val MonthTransfers = 80_000
-        val MastercardMaestroCommission = 0.06
-        val VisaMirCommission = 0.075
+        val monthTransfers = 80_000
+        val mastercardMaestroCommission = 0.06
+        val visaMirCommission = 0.075
 
-        val result = Commission(
+        val result = commission(
             card = card4,
             transfers = transfers,
-            MonthTransfers = MonthTransfers,
-            MastercardMaestroCommission = MastercardMaestroCommission,
-            VisaMirCommission = VisaMirCommission
+            monthTransfers = monthTransfers,
+            mastercardMaestroCommission = mastercardMaestroCommission,
+            visaMirCommission = visaMirCommission
         )
         assertEquals(result, 37_500)
+    }
+
+    @Test
+    fun commission_If() {
+        val card1 = "Maestro"
+        val transfers = 10_000
+        val monthTransfers = 90_000
+        val mastercardMaestroCommission = 0.06
+        val visaMirCommission = 0.075
+
+        val result = commission(
+            card = card1,
+            transfers = transfers,
+            monthTransfers = monthTransfers,
+            mastercardMaestroCommission = mastercardMaestroCommission,
+            visaMirCommission = visaMirCommission
+        )
+        assertEquals(result, 62000)
     }
 }
